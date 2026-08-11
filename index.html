@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -69,7 +71,11 @@ body {
   text-transform: uppercase;
 }
 
-button {
+.boton-musica {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
   border: 1px solid #ffffff66;
   border-radius: 30px;
   padding: 14px 25px;
@@ -77,8 +83,23 @@ button {
   color: white;
   font-size: 15px;
   backdrop-filter: blur(10px);
+  cursor: pointer;
 }
 
+.boton-musica:active {
+  transform: translateX(-50%) scale(.95);
+}
+
+/* Reproductor invisible */
+#reproductor {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  left: -10px;
+  top: -10px;
+}
 </style>
 </head>
 
@@ -98,22 +119,33 @@ button {
     Te amaré hoy y siempre, mi amor, o hasta que la roca tenga pelo :>
   </div>
 
-  </div>
+</div>
 
+<!-- Botón de música -->
 <button onclick="reproducirCancion()" class="boton-musica">
-    🎵 Nuestra canción ❤️
+  🎵 Nuestra canción ❤️
 </button>
+
+<!-- YouTube -->
+<iframe
+  id="reproductor"
+  width="1"
+  height="1"
+  src=""
+  allow="autoplay"
+  frameborder="0">
+</iframe>
 
 <script>
 function reproducirCancion() {
-    window.open(
-        "https://www.youtube.com/watch?v=loOWKm8GW6A",
-            "_blank"
-    );
+
+  const reproductor = document.getElementById("reproductor");
+
+  reproductor.src =
+    "https://www.youtube.com/embed/loOWKm8GW6A?autoplay=1&loop=1&playlist=loOWKm8GW6A";
+
 }
 </script>
-
-</div>
 
 </body>
 </html>
